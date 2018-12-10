@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_lstdirs.c                                     :+:      :+:    :+:   */
+/*   fill_lstfls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 17:20:18 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/10 17:49:21 by tduval           ###   ########.fr       */
+/*   Created: 2018/12/10 17:41:40 by tduval            #+#    #+#             */
+/*   Updated: 2018/12/10 19:47:03 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,19 @@ static char	**split(char **paths)
 	while (paths[i])
 	{
 		if (stat(paths[i], &buf) != -1)
-			if (S_ISDIR(buf.st_mode))
+			if (!S_ISDIR(buf.st_mode))
 				j++;
 		i++;
 	}
+	if (!j)
+		return (0);
 	if (!(tab = (char **)malloc(sizeof(char *) * (j + 1))))
 		return (0);
 	tab[j] = 0;
 	return (tab);
 }
 
-char		**fill_lstdirs(char **paths)
+char		**fill_lstfls(char **paths)
 {
 	char	**tab;
 	t_stat	buf;
@@ -51,7 +53,7 @@ char		**fill_lstdirs(char **paths)
 	{
 		if (stat(paths[i], &buf) != -1)
 		{
-			if (S_ISDIR(buf.st_mode))
+			if (!S_ISDIR(buf.st_mode))
 			{
 				if (!(tab[j] = ft_strdup(paths[i])))
 					return (0);

@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 12:29:29 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/09 13:36:44 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/10 19:45:45 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <dirent.h>
 #include <stdlib.h>
 #include "ft_ls.h"
 
@@ -22,7 +23,7 @@ int			check_opts(char *options)
 	{
 		if (!(ft_strchr("lRart", options[i])))
 		{
-			ft_printf("Invalid option : %c\n", options[i]);
+			ft_printf("ft_ls: illegal option -- %c\nusage: ft_ls [-ratlR] [file...]\n", options[i]);
 			return (0);
 		}
 		i++;
@@ -41,8 +42,9 @@ t_params	get_args(int ac, char **av)
 	ret.err = 0;
 	i = 1;
 	j = 0;
-	if (*av[i] == '-')
-	{	if (!(ret.opts = ft_strdup(av[i] + 1)) || !(check_opts(ret.opts)))
+	if (av[1][0] == '-' && av[1][1])
+	{	
+		if (!(ret.opts = ft_strdup(av[i] + 1)) || !(check_opts(ret.opts)))
 		{
 			ret.err = 1;
 			return (ret);
@@ -64,19 +66,39 @@ t_params	get_args(int ac, char **av)
 		i++;
 		j++;
 	}
-	ret.paths[i] = 0;
+	ret.paths[j] = 0;
 	return (ret);
 }
 
 int			main(int ac, char **av)
 {
+	int			i;
+	int			j;
+	t_stat		buf;
+	char		**lstdir;
+	char		**lstfls;
 	t_params	p;
-/*
+
+	j = 0;
 	if (ac < 2)
 		ft_ls_nomod();
-	else*/
-	p = get_args(ac, av);
-	if (p.err)
-		return (0);
+	else
+	{	
+		i = 0;
+		p = get_args(ac, av);
+		if (p.err)
+			return (0);
+		while (p.paths[i])
+		{
+			if (stat(p.paths[i], &buf) == -1)
+				ft_printf("ft_ls: %s: No such file or directory\n", p.paths[i]);
+			i++;
+		}
+		if (!(lstdir = fill_lstdirs(p.paths)))
+			return (0);
+		if (!(lstfls = fill_lstfls(p.paths)))
+			return (0);
+		print_names(lstfls, p.opts);
+	}
 	return (0);
 }
