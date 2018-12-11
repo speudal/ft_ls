@@ -6,13 +6,13 @@
 #    By: tduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 14:45:40 by tduval            #+#    #+#              #
-#    Updated: 2018/12/11 18:59:55 by tduval           ###   ########.fr        #
+#    Updated: 2018/12/11 21:54:41 by tduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	#-Wall -Werror -Wextra
 
 INCLUDES	=	-I . -I libft
 
@@ -21,7 +21,10 @@ LIBFT		=	libft/libft.a
 NAME		=	ft_ls
 
 SRC			=	main.c					\
+				srcs/widthn.c			\
 				srcs/sorts.c			\
+				print/print_files.c		\
+				print/print_l.c			\
 				srcs/get_files.c		\
 				srcs/get_dirs.c			\
 				srcs/get_opts.c	
