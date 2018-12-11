@@ -6,25 +6,33 @@
 #    By: tduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 14:45:40 by tduval            #+#    #+#              #
-#    Updated: 2018/12/11 15:26:12 by tduval           ###   ########.fr        #
+#    Updated: 2018/12/11 18:59:55 by tduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		=	gcc
+CC			=	gcc
 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra
 
-NAME	=	ft_ls
+INCLUDES	=	-I . -I libft
 
-SRC		=	main.c	
+LIBFT		=	libft/libft.a
 
-OBJ		=	$(SRC:.c=.o)
+NAME		=	ft_ls
+
+SRC			=	main.c					\
+				srcs/sorts.c			\
+				srcs/get_files.c		\
+				srcs/get_dirs.c			\
+				srcs/get_opts.c	
+
+OBJ			=	$(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME) : $(OBJ)
 	@$(MAKE) -C libft
-	@$(CC) $(OBJ) -o $(NAME)
+	@$(CC) $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "\x1b[36m[FT_LS COMPILED]\x1b[0m"
 
 clean :
@@ -38,6 +46,8 @@ fclean : clean
 	@rm -f $(NAME)
 
 %.o : %.c
-	@$(CC) -c $(CFLAGS) $<
+	@$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
 
 re : fclean all
+
+.PHONY : all clean fclean re
