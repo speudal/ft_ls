@@ -6,7 +6,7 @@
 /*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 21:34:34 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/15 03:21:55 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/15 03:51:04 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,8 @@ void	print_files(t_inf *top, char *opts, char flag)
 		ft_printf("total %d\n", pad[4]);
 		while (top)
 		{
-			if ((opts && ft_ami(opts, 'a')) || (top->path)[0] != '.')
+			if ((opts && ft_ami(opts, 'a')) || rev_chr(top->path)[0] != '.')
 			{
-				//top->path = ft_strdup(ft_ami(top->path, '/') ? /*rev_chr(top->path) : */top->path);
 				print_l(top, pad);
 				ft_putchar('\n');
 			}
@@ -108,7 +107,7 @@ void	print_files(t_inf *top, char *opts, char flag)
 	{
 		while (top)
 		{
-			if ((opts && ft_ami(opts, 'a')) || rev_chr(top->path)[0] != '.')
+			if ((opts && ft_ami(opts, 'a')) || ft_ami(top->path, '/') ? rev_chr(top->path)[0] != '.' : (top->path)[0] != '.')
 				ft_putendl(ft_ami(top->path, '/') ? rev_chr(top->path) : top->path);
 			top = top->next;
 		}
