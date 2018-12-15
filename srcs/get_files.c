@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_files.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 18:31:23 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/11 19:21:29 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/15 03:01:40 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,34 @@
 #include "ft_ls.h"
 #include "libft.h"
 
-static char	**split(int ac, char **av, char **tab)
+t_inf		*get_files(char **av, char *opts)
 {
+	t_inf	*beg;
+	t_inf	*fils;
 	t_stat	buf;
 	int		i;
 	int		j;
 
+	i = 0;
 	j = 0;
-	i = 1;
-	while (i < ac)
+	beg = 0;
+	fils = 0;
+	while (av[i])
 	{
-		if (stat(av[i], &buf) != -1)
+		if (!fils)
 		{
-			if (!S_ISDIR(buf.st_mode))
-			{
-				if (!(tab[j] = ft_strdup(av[i])))
-					return (0);
-				j++;
-			}
-		}
-		i++;
-	}
-	tab[j] = 0;
-	return (tab);
-}
-
-char		**get_files(int ac, char **av)
-{
-	t_stat	buf;
-	char	**tab;
-	int		i;
-	int		j;
-
-	i = 1;
-	j = 0;
-	while (i < ac && (av[i][0] == '-' && av[i][1]))
-		i++;
-	while (i < ac)
-	{
-		if (stat(av[i], &buf) != -1)
-		{
-			if (!S_ISDIR(buf.st_mode))
-				j++;
+			fils = fil_new(av[i], opts );
+			beg = fils;
+		
 		}
 		else
-			ft_printf("ft_ls: %s: No such file or directory\n", av[i]);
+		{
+			fils->next = fil_new(av[i], opts);
+			if (fils->next)
+				fils = fils->next;
+		}
 		i++;
 	}
-	if (!(tab = malloc(sizeof(char *) * (j + 1))))
-		return (0);
-	if (!(tab = split(ac, av, tab)))
-		return (0);
-	return (tab);
+	beg = sort_alpha(beg);
+	return (beg);
 }
