@@ -82,7 +82,7 @@ void	print_br(t_inf *dir, char *opts, int f)
 	if (!dir)
 		return ;
 	if (f)
-		ft_printf("%s:\n", dir->path);
+		ft_printf("%s:\n", dir->path[1] == '/' && dir->path[0] != '.' ? dir->path + 1 : dir->path);
 	if ((gl = opendir(dir->path)))
 	{
 		cfils = get_fifi(gl, dir, opts);
