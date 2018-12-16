@@ -31,7 +31,7 @@ void		hub_dirs(char *opts, t_inf *dirs, char flag)
 		dirs = sort_reverse(dirs);
 	if (ft_ami(opts, 'R'))
 	{
-		print_br(dirs, opts, 0);
+		print_br(dirs, opts, 1);
 		return ;
 	}
 	while (dirs)
