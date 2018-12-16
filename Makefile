@@ -6,13 +6,13 @@
 #    By: tduval <tduval@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 14:45:40 by tduval            #+#    #+#              #
-#    Updated: 2018/12/15 02:41:21 by tduval           ###   ########.fr        #
+#    Updated: 2018/12/16 05:06:56 by tduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	gcc
 
-CFLAGS		=	-g#-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra
 
 INCLUDES	=	-I . -I libft
 
@@ -20,20 +20,23 @@ LIBFT		=	libft/libft.a
 
 NAME		=	ft_ls
 
+OBJ			=	$(SRC:.c=.o)
+
 SRC			=	main.c					\
-				srcs/widthn.c			\
-				srcs/sorts.c			\
-				print/print_files.c		\
-				print/print_dirs.c		\
-				print/print_l.c			\
+				print_l/print_l.c		\
+				print_l/get_padding.c	\
+				hubs/hub_files.c		\
+				hubs/hub_dirs.c			\
+				print_br/print_br.c		\
+				sorts/sort_alpha.c		\
+				sorts/sort_time.c		\
+				sorts/sort_reverse.c	\
 				srcs/inf_new.c			\
-				srcs/ft_ami.c			\
+				srcs/utils.c			\
 				srcs/get_files.c		\
-				print/print_rec.c		\
 				srcs/get_dirs.c			\
 				srcs/get_opts.c	
 
-OBJ			=	$(SRC:.c=.o)
 
 all: $(NAME)
 
@@ -54,7 +57,6 @@ clean :
 fclean : clean
 	@$(MAKE) -C libft fclean
 	@rm -f $(NAME)
-
 
 re : fclean all
 

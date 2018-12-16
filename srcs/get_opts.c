@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_opts.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 17:36:27 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/11 18:22:03 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/15 18:26:51 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*split(char *av, char *opts)
 			{
 				if (opts)
 					free(opts);
-				return (0);
+						return (0);
 			}
 		}
 		i++;

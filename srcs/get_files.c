@@ -6,7 +6,7 @@
 /*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 18:31:23 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/15 03:01:40 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/16 04:10:05 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_inf		*get_files(char **av, char *opts)
 {
 	t_inf	*beg;
 	t_inf	*fils;
-	t_stat	buf;
 	int		i;
 	int		j;
 
@@ -32,7 +31,6 @@ t_inf		*get_files(char **av, char *opts)
 		{
 			fils = fil_new(av[i], opts );
 			beg = fils;
-		
 		}
 		else
 		{

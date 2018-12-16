@@ -6,7 +6,7 @@
 /*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 18:51:28 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/15 03:02:47 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/15 18:32:30 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_inf		*get_dirs(char **av, char *opts)
 {
 	t_inf	*beg;
 	t_inf	*dirs;
-	t_stat	buf;
 	int		i;
 	int		j;
 

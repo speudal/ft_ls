@@ -6,7 +6,7 @@
 /*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:52:39 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/15 03:15:58 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/15 19:26:11 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "ft_ls.h"
-
-static	char *rev_chr(char *str)
-{
-	int	i;
-
-	i = ft_strlen(str) - 1;
-	while (i && str[i] != '/')
-		i--;
-	return (str + i);
-}
 
 t_inf	*fil_new(char *path, char *opts)
 {
@@ -113,11 +103,11 @@ t_inf	*any_new(char *path, char *opts)
 		new->path = ft_strnew(256);
 		n = readlink(path, new->path, 255);
 		new->path[n] = 0;
-		new->path = ft_strjoin(ft_strjoin(rev_chr(path) + 1, " -> "), new->path);
+		new->path = ft_strjoin(ft_strjoin(rev_chr(path), " -> "), new->path);
 	}
 	else
 	{
-		if (!(new->path = ft_strdup(S_ISDIR(buf.st_mode) ? path : rev_chr(path) + 1)))
+		if (!(new->path = ft_strdup(S_ISDIR(buf.st_mode) ? path : rev_chr(path))))
 			return (0);
 	}
 	new->buf = buf;

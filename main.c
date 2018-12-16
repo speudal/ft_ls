@@ -6,7 +6,7 @@
 /*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:51:55 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/15 03:02:00 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/16 03:43:17 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int			main(int ac, char **av)
 	if (!(dirs = get_dirs(av + i, opts)) && !files && !av[i])
 		dirs = dir_new(".", opts);
 	if (files)
-		print_files(files, opts, dirs && ac > i + 1 && dirs ? 1 : 0);
-	print_dirs(opts, dirs, (dirs && dirs->next) || (files));
+		hub_files(files, opts, dirs && ac > i + 1 && dirs ? 1 : 0, 0);
+	hub_dirs(opts, dirs, (dirs && dirs->next) || (files));
 	free_all(opts, files, dirs);
 	return (0);
 }

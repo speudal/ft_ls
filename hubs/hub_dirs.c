@@ -6,7 +6,7 @@
 /*   By: tduval <tduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 05:36:16 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/15 03:04:35 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/16 05:06:10 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_ls.h"
 #include "libft.h"
 
-void		print_dirs(char *opts, t_inf *dirs, char flag)
+void		hub_dirs(char *opts, t_inf *dirs, char flag)
 {
 	DIR			*o;
 	t_inf		*or;
@@ -24,13 +24,14 @@ void		print_dirs(char *opts, t_inf *dirs, char flag)
 	or = 0;
 	if (dirs && dirs->next)
 		flag = 1;
+	dirs = sort_alpha(dirs);
 	if (ft_ami(opts, 't'))
 		dirs = sort_time(dirs);
 	if (ft_ami(opts, 'r'))
 		dirs = sort_reverse(dirs);
 	if (ft_ami(opts, 'R'))
 	{
-		print_rec(dirs, opts, 0);
+		print_br(dirs, opts, 0);
 		return ;
 	}
 	while (dirs)
@@ -54,7 +55,7 @@ void		print_dirs(char *opts, t_inf *dirs, char flag)
 						cur = cur->next;
 				}
 			}
-			print_files(or, opts, 0);
+			hub_files(or, opts, 0, 1);
 			free_all(0, 0, cur);
 		}
 		else
