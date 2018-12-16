@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 23:19:58 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/15 23:20:05 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/16 05:31:24 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ t_inf	*sort_time(t_inf *lst)
 			lst->next->buf = btmp;
 			lst = or;
 		}
+		else
+			lst = lst->next;
 		ft_strdel(&tmp);
-		lst = lst->next;
 	}
 	return (or);
 }
