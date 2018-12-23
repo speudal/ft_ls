@@ -8,3 +8,8 @@ My ft_ls supports `-r` ; `-l` ; `-a` ; `-t` and `-R` options.
 ```
 make
 ```
+
+### Usage examples
+
+```./ft_ls -R ~```
+```./ft_ls -atr /etc```
