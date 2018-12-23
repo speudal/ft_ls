@@ -5,9 +5,7 @@ My ft_ls supports `-r` ; `-l` ; `-a` ; `-t` and `-R` options.
 
 ### Installing
 
-```
-make
-```
+```make```
 
 ### Usage examples
 
